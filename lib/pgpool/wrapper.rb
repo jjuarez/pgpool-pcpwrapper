@@ -1,0 +1,5 @@
+require 'core_extensions/string/percentage'
+require 'pgpool/pcpwrapper/version'
+require 'pgpool/pcpwrapper/node_info'
+require 'pgpool/pcpwrapper/response'
+require 'pgpool/pcpwrapper/command_launcher'
