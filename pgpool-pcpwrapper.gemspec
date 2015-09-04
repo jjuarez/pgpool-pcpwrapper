@@ -1,12 +1,12 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'pgpool/pcp_wrapper/version'
+require 'pgpool/wrapper/version'
 
 
 Gem::Specification.new do |spec|
   spec.name          = "pgpool-pcpwrapper"
-  spec.version       = Pgpool::Pcpwrapper::VERSION
+  spec.version       = Pgpool::Wrapper::VERSION
   spec.authors       = ["Javier Juarez"]
   spec.email         = ["jjuarez@tuenti.com"]
 
@@ -27,6 +27,8 @@ Gem::Specification.new do |spec|
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
+
+  spec.add_development_dependency "mixlib-shellout", "~> 2.1"
 
   spec.add_development_dependency "bundler", "~> 1.10"
   spec.add_development_dependency "rake", "~> 10.0"

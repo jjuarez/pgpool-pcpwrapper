@@ -1,4 +1,4 @@
-require 'mixlib/shell_out'
+require 'mixlib/shellout'
 require 'pgpool/wrapper/response'
 
 module PGPool
