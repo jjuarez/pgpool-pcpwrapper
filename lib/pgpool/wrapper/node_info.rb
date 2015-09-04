@@ -9,22 +9,37 @@ module PGPool
       DOWN              = 3 # Node is down.
 
 
+      private
+
+      def status=(status)
+        fail("Invalid status: #{status}") unless [INITIALIZING, UP_NO_CONNECTIONS, UP, DOWN].include?(status)
+
+        @status = status
+      end
+
+
+      public
+
       def self.build_from_raw_data(id, command_raw_data)
         host, port, status, weight = command_raw_data.split(' ')
 
-        NodeInfo.new(id, host, port, weight, status)
+        NodeInfo.new(id, host, port, status, weight)
       end
 
       attr_reader :id, :host, :port, :weight, :status
 
-      def initialize(id, host, port, weight, status)
-        @id     = id
-        @host   = host
-        @port   = port.to_i
-        @weight = weight.to_f
-        @status = status.to_i
+      def initialize(id, host, port, status, weight)
+        @id         = id.to_i
+        @host       = host
+        @port       = port.to_i
+        self.status = status.to_i
+        @weight     = weight.to_f
 
         self
+      end
+
+      def initializing?
+        status == INITIALIZING
       end
 
       def up?

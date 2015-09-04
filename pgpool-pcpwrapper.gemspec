@@ -5,8 +5,9 @@ require 'pgpool/wrapper/version'
 
 
 Gem::Specification.new do |spec|
+
   spec.name          = "pgpool-pcpwrapper"
-  spec.version       = Pgpool::Wrapper::VERSION
+  spec.version       = PGPool::Wrapper::VERSION
   spec.authors       = ["Javier Juarez"]
   spec.email         = ["jjuarez@tuenti.com"]
 
