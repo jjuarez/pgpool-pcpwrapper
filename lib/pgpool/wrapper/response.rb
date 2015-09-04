@@ -30,7 +30,6 @@ module PGPool
         self
       end
 
-
       def success?
         status == OK
       end
