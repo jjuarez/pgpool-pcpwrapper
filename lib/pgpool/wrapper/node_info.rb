@@ -32,8 +32,9 @@ module PGPool
         @id         = id.to_i
         @host       = host
         @port       = port.to_i
-        self.status = status.to_i
         @weight     = weight.to_f
+
+        self.status = status.to_i
 
         self
       end
@@ -50,8 +51,12 @@ module PGPool
         status == DOWN
       end
 
+      def to_hash
+        { id: id, host: host, port: port, status: status, weight: weight }
+      end
+
       def inspect
-        "{ id: #{id}, host: #{host}, port: #{port}, weight: #{weight}, status: #{status} }"
+        to_hash.inspect
       end
 
       def to_s
