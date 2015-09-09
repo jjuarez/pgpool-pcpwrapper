@@ -24,7 +24,7 @@ module PGPool
       end
 
       def extract_number_of_nodes
-        launch(@pcp_node_count_command.stdout).to_i
+        launch(@pcp_node_count_command).stdout.to_i
       end
 
       public
