@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'pgpool/wrapper/version'
+require 'pgpool/pcpwrapper/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'pgpool-pcpwrapper'
-  spec.version       = PGPool::Wrapper::VERSION
+  spec.version       = PGPool::PCPWrapper::VERSION
   spec.authors       = ['Javier Juarez']
   spec.email         = ['jjuarez@tuenti.com']
 

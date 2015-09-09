@@ -3,7 +3,7 @@
 module PGPool
   #
   # = module: Wrapper namespace
-  module Wrapper
+  module PCPWrapper
     VERSION = '0.1.1'
   end
 end

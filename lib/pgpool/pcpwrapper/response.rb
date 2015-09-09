@@ -1,7 +1,7 @@
-require 'pgpool/wrapper/node_info'
+require 'pgpool/pcpwrapper/node_info'
 
 module PGPool
-  module Wrapper
+  module PCPWrapper
     #
     # = class: Response
     class Response

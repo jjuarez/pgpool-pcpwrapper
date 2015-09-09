@@ -1,8 +1,8 @@
 require 'mixlib/shellout'
-require 'pgpool/wrapper/response'
+require 'pgpool/pcpwrapper/response'
 
 module PGPool
-  module Wrapper
+  module PCPWrapper
     #
     # = class: CommandLauncher, a simple wrapper for PCP PGPool management CLI
     class CommandLauncher
@@ -19,7 +19,8 @@ module PGPool
 
         command.run_command
         command.error!
-        command.stdout
+
+        command
       end
 
       def extract_number_of_nodes

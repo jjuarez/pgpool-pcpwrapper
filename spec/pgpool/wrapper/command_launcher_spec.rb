@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe PGPool::Wrapper::CommandLauncher do
+describe PGPool::PCPWrapper::CommandLauncher do
 
   before do
   end

@@ -1,5 +1,5 @@
 module PGPool
-  module Wrapper
+  module PCPWrapper
     #
     # = class: NodeInfo, PORO
     class NodeInfo
