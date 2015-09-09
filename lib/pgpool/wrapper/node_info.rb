@@ -8,7 +8,6 @@ module PGPool
       UP                = 2 # Node is up. Connections are pooled.
       DOWN              = 3 # Node is down.
 
-
       private
 
       def status=(status)
@@ -16,7 +15,6 @@ module PGPool
 
         @status = status
       end
-
 
       public
 

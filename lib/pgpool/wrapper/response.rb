@@ -2,7 +2,6 @@ require 'pgpool/wrapper/node_info'
 
 module PGPool
   module Wrapper
-
     #
     # = class: Response
     class Response
@@ -18,7 +17,7 @@ module PGPool
       NOCONN    = 9  # No connection exists
       SOCK      = 10 # Socket error
       HOST      = 11 # Hostname resolution error
-      BACKEND   = 12 # PCP process error on the server (specifying an invalid ID, etc.)
+      BACKEND   = 12 # PCP process error on the server
       AUTH      = 13 # Authorization failure
 
       attr_reader :status, :node_info
@@ -36,7 +35,7 @@ module PGPool
 
       def error?
         status != OK
-      end 
+      end
     end
   end
 end
