@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe PGPool::Wrapper::Response do
-
   before do
-    @failed_command = Mixlib::ShellOut.new("/usr/bin/this_command_will_fail")
+    @failed_command = Mixlib::ShellOut.new('/usr/bin/this_command_will_fail')
+
     @failed_command.run_command rescue RuntimeError
 
     @id      = 0
@@ -17,37 +17,36 @@ describe PGPool::Wrapper::Response do
   end
 
   it 'can be built from a Mixlib::ShellOut' do
-    expect(PGPool::Wrapper::Response.new(@id, Mixlib::ShellOut.new("hostname")).class).to be(PGPool::Wrapper::Response)
+    expect(PGPool::Wrapper::Response.new(@id, Mixlib::ShellOut.new('hostname')).class).to be(PGPool::Wrapper::Response)
   end
 
   it 'can handle failed commands' do
-    response = PGPool::Wrapper::Response.new(@id, @failed_command) 
+    response = PGPool::Wrapper::Response.new(@id, @failed_command)
 
-    expect(response.class).to      be(PGPool::Wrapper::Response)
+    expect(response.class).to be(PGPool::Wrapper::Response)
     expect(response.status).not_to eq(PGPool::Wrapper::Response::OK)
-    expect(response.success?).to   eq(false)
+    expect(response.success?).to eq(false)
   end
 
   it 'can take the stderr of a failed command' do
-    response = PGPool::Wrapper::Response.new(@id, @failed_command) 
+    response = PGPool::Wrapper::Response.new(@id, @failed_command)
 
-    expect(response.class).to     be(PGPool::Wrapper::Response)
+    expect(response.class).to be(PGPool::Wrapper::Response)
     expect(response.node_info).to eq(@failed_command.stderr)
   end
 
-  it 'can handle success commands' do 
-    response = PGPool::Wrapper::Response.new(@id, @success_command) 
+  it 'can handle success commands' do
+    response = PGPool::Wrapper::Response.new(@id, @success_command)
 
-    expect(response.class).to    be(PGPool::Wrapper::Response)
-    expect(response.status).to   eq(PGPool::Wrapper::Response::OK)
+    expect(response.class).to be(PGPool::Wrapper::Response)
+    expect(response.status).to eq(PGPool::Wrapper::Response::OK)
     expect(response.success?).to eq(true)
   end
 
   it 'can take the stdout of a success command' do
+    response = PGPool::Wrapper::Response.new(@id, @success_command)
 
-    response = PGPool::Wrapper::Response.new(@id, @success_command) 
-
-    expect(response.node_info.class).to  be(PGPool::Wrapper::NodeInfo)
+    expect(response.node_info.class).to be(PGPool::Wrapper::NodeInfo)
     expect(response.node_info.status).to eq(@status)
   end
 end
