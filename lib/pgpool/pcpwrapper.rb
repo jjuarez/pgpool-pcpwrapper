@@ -19,7 +19,7 @@ module PGPool
     DEFAULT_USER     = 'postgres'
     DEFAULT_PASSWORD = 'postgres'
 
-    def_delegator :@command_launcher, :node_information, :nodes_information
+    def_delegators :@command_launcher, :node_information, :nodes_information
 
     def initialize(parameters={ })
 
