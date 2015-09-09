@@ -42,7 +42,6 @@ module PGPool
         @pcp_node_count_command = "#{File.join(parameters[:prefix], PCP_NODE_COUNT_EXE)} #{@pcp_command_options}"
         @pcp_node_info_command  = "#{File.join(parameters[:prefix], PCP_NODE_INFO_EXE)} #{@pcp_command_options}"
         @number_of_nodes        = extract_number_of_nodes
-        
         self
       end
 
