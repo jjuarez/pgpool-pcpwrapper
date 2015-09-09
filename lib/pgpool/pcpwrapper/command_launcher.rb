@@ -19,7 +19,6 @@ module PGPool
 
         command.run_command
         command.error!
-
         command
       end
 
