@@ -8,7 +8,6 @@ module PGPool
     DEFAULT_PREFIX     = '/usr/sbin'
     PCP_NODE_COUNT_EXE = 'pcp_node_count'
     PCP_NODE_INFO_EXE  = 'pcp_node_info'
-    INVALID_NODE_ID    = 99
 
     private
 
@@ -40,9 +39,12 @@ module PGPool
       @pcp_command_options    = "#{@timeout} #{@hostname} #{@port} #{@user} #{@password}"
       @pcp_node_count_command = "#{File.join(options[:prefix], PCP_NODE_COUNT_EXE)} #{@pcp_command_options}"
       @pcp_node_info_command  = "#{File.join(options[:prefix], PCP_NODE_INFO_EXE)} #{@pcp_command_options}"
-      @number_of_nodes        = extract_number_of_nodes
 
       self
+    end
+
+    def number_of_nodes
+      @number_of_nodes ||= extract_number_of_nodes
     end
 
     def valid_node_id?(node_id)
