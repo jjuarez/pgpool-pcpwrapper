@@ -28,7 +28,7 @@ module PGPool
 
     attr_reader :number_of_nodes
 
-    def initialize(hostname, port, user, password, timeout, options={ })
+    def initialize(hostname, port, user, password, timeout, options = {})
       options = { prefix: DEFAULT_PREFIX }.merge(options)
 
       @hostname = hostname

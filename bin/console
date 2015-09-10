@@ -5,4 +5,3 @@ require 'pgpool/pcpwrapper'
 require 'pry'
 
 Pry.start
-

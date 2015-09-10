@@ -21,9 +21,8 @@ module PGPool
 
     def_delegators :@command_launcher, :valid_node_id?, :node_information, :nodes_information
 
-    def initialize(parameters={ })
-
-      parameters = { 
+    def initialize(parameters = {})
+      parameters = {
         hostname: DEFAULT_HOSTNAME,
         port:     DEFAULT_PORT,
         user:     DEFAULT_USER,
@@ -37,7 +36,6 @@ module PGPool
         parameters[:user],
         parameters[:password],
         parameters[:timeout])
-      
       self
     end
   end
