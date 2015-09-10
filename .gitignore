@@ -1,5 +1,7 @@
 /.bundle/
 /.yardoc
+/.ruby-version
+/.rubocop.yml
 /Gemfile.lock
 /_yardoc/
 /coverage/
@@ -7,4 +9,3 @@
 /pkg/
 /spec/reports/
 /tmp/
-/.ruby-version
