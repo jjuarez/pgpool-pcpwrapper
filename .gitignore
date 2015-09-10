@@ -2,6 +2,7 @@
 /.yardoc
 /.ruby-version
 /.rubocop.yml
+/**/.*.swp
 /Gemfile.lock
 /_yardoc/
 /coverage/
