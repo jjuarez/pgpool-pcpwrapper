@@ -18,16 +18,16 @@ module PGPool
     public
 
     def self.build_from_raw_data(id, command_raw_data)
-      host, port, status, weight = command_raw_data.split(' ')
+      hostname, port, status, weight = command_raw_data.split(' ')
 
-      NodeInfo.new(id, host, port, status, weight)
+      NodeInfo.new(id, hostname, port, status, weight)
     end
 
-    attr_reader :id, :host, :port, :weight, :status
+    attr_reader :id, :hostname, :port, :weight, :status
 
-    def initialize(id, host, port, status, weight)
+    def initialize(id, hostname, port, status, weight)
       @id         = id.to_i
-      @host       = host
+      @hostname   = hostname
       @port       = port.to_i
       @weight     = weight.to_f
 
@@ -49,7 +49,7 @@ module PGPool
     end
 
     def to_hash
-      { id: id, host: host, port: port, status: status, weight: weight }
+      { id: id, hostname: hostname, port: port, status: status, weight: weight }
     end
 
     def inspect
