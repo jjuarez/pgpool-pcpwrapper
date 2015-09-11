@@ -24,12 +24,10 @@ describe PGPool::CommandLauncher do
     @backend1_hostname = 'backend1'
     @backend1_status   = @down_status
 
-    # Mixlib::Shellout mock
     @shellout_node_up = double('Mixlib::ShellOut', command: @pcp_node_info_command_1)
     allow(@shellout_node_up).to receive(:exitstatus) { 0 }
     allow(@shellout_node_up).to receive(:stdout) { "#{@backend0_hostname} #{@backend_port} #{@backend0_status} #{@backend_weight}" }
 
-    #PGPool::NodeInfo success mock
     @pcp_node_info_successful = double('PGPool::NodeInfo', id: 0, command_raw_data: @shellout_node_up.stdout)
     allow(@pcp_node_info_successful).to receive(:id) { @backend0_id }
     allow(@pcp_node_info_successful).to receive(:hostname) { @backend0_hostname }
@@ -41,17 +39,15 @@ describe PGPool::CommandLauncher do
     allow(@shellout_node_down).to receive(:exitstatus) { 0 }
     allow(@shellout_node_down).to receive(:stdout) { "#{@backend1_hostname} #{@backend_port} #{@backend1_status} #{@backend_weight}" }
 
-    #PGPool::NodeInfo failed mock
-    @pcp_node_info_failed = double('PGPool::NodeInfo', id: @backend1_id, command_raw_data: @shellout_node_down.stdout) 
+    @pcp_node_info_failed = double('PGPool::NodeInfo', id: @backend1_id, command_raw_data: @shellout_node_down.stdout)
     allow(@pcp_node_info_failed).to receive(:id) { @backend1_id }
     allow(@pcp_node_info_failed).to receive(:hostname) { @backend1_hostname }
     allow(@pcp_node_info_failed).to receive(:port) { @backend_port }
     allow(@pcp_node_info_failed).to receive(:status) { @backend1_status }
     allow(@pcp_node_info_failed).to receive(:weight) { @backend_weight }
 
-    # PGPool::CommandLauncher mock
     @number_of_nodes  = 2
-    @command_launcher = double('PGPool::CommandLauncher', 
+    @command_launcher = double('PGPool::CommandLauncher',
                                hostname: @hostname,
                                port: @port,
                                user: @user,
@@ -60,7 +56,7 @@ describe PGPool::CommandLauncher do
 
     allow(@command_launcher).to receive(:number_of_nodes) { @number_of_nodes }
     allow(@command_launcher).to receive(:valid_node_id?) { |id| id > -1 && id < @number_of_nodes }
-    allow(@command_launcher).to receive(:node_info) { @pcp_node_info_successful } 
+    allow(@command_launcher).to receive(:node_info) { @pcp_node_info_successful }
     allow(@command_launcher).to receive(:nodes_info) { [@pcp_node_info_successful, @pcp_node_info_failed] }
   end
 
@@ -90,12 +86,12 @@ describe PGPool::CommandLauncher do
     expect(@command_launcher.nodes_info.class).to be(Array)
     expect(@command_launcher.nodes_info.length).to eq(@number_of_nodes)
 
-    @number_of_nodes.times do |i| 
+    @number_of_nodes.times do |i|
       expect(@command_launcher.nodes_info[i].id).to eq(i)
       expect(@command_launcher.nodes_info[i].hostname).to eq("backend#{i}")
       expect(@command_launcher.nodes_info[i].port).to eq(@backend_port)
       expect(@command_launcher.nodes_info[i].status).to be >= 0
-      expect(@command_launcher.nodes_info[i].status).to be <= 3 
+      expect(@command_launcher.nodes_info[i].status).to be <= 3
       expect(@command_launcher.nodes_info[i].weight).to eq(@backend_weight)
     end
   end
