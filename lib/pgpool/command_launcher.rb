@@ -48,16 +48,16 @@ module PGPool
     end
 
     def valid_node_id?(node_id)
-      node_id >= 0 && node_id < @number_of_nodes
+      node_id >= 0 && node_id < number_of_nodes
     end
 
     def node_information(node_id)
-      fail("Invalid node id(#{node_id}) must be between 0 and #{@number_of_nodes - 1}") unless valid_node_id?(node_id)
+      fail("Invalid node id(#{node_id}) must be between 0 and #{number_of_nodes - 1}") unless valid_node_id?(node_id)
       Response.new(node_id, launch("#{@pcp_node_info_command} #{node_id}"))
     end
 
     def nodes_information
-      @number_of_nodes.times.map { |node_id| node_information(node_id) }
+      number_of_nodes.times.map { |node_id| node_information(node_id) }
     end
   end
 end
