@@ -27,8 +27,8 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.require_ruby_version     = '~> 1.9'
-  spec.require_rubygems_version = '~> 1.8'
+  spec.required_ruby_version     = '>= 1.9'
+  spec.required_rubygems_version = '>= 1.8'
 
   spec.add_dependency 'mixlib-shellout', '~> 2.1'
 
