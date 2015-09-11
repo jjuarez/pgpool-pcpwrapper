@@ -3,22 +3,22 @@ require 'pgpool/node_info'
 
 describe PGPool::NodeInfo do
   before do
-    @node_info_id     = 1
-    @node_info_host   = 'backend1'
-    @node_info_port   = 5432
-    @node_info_status = 0
-    @node_info_weight = 0.5
-    @node_info        = PGPool::NodeInfo.build_from_raw_data(
+    @node_info_id       = 1
+    @node_info_hostname = 'backend1'
+    @node_info_port     = 5432
+    @node_info_status   = 0
+    @node_info_weight   = 0.5
+    @node_info          = PGPool::NodeInfo.build_from_raw_data(
       @node_info_id,
-      "#{@node_info_host} #{@node_info_port} #{@node_info_status} #{@node_info_weight}")
+      "#{@node_info_hostname} #{@node_info_port} #{@node_info_status} #{@node_info_weight}")
   end
 
   it 'can be built from raw data' do
     expect(@node_info.class).to be PGPool::NodeInfo
     expect(@node_info.id.class).to be(Fixnum)
     expect(@node_info.id).to eq(@node_info_id)
-    expect(@node_info.host.class).to be(String)
-    expect(@node_info.host).to eq(@node_info_host)
+    expect(@node_info.hostname.class).to be(String)
+    expect(@node_info.hostname).to eq(@node_info_hostname)
     expect(@node_info.port.class).to be(Fixnum)
     expect(@node_info.port).to eq(@node_info_port)
     expect(@node_info.status.class).to be(Fixnum)
@@ -31,8 +31,8 @@ describe PGPool::NodeInfo do
     expect(@node_info.class).to be(PGPool::NodeInfo)
     expect(@node_info.id.class).to be(Fixnum)
     expect(@node_info.id).to eq(@node_info_id)
-    expect(@node_info.host.class).to be(String)
-    expect(@node_info.host).to eq(@node_info_host)
+    expect(@node_info.hostname.class).to be(String)
+    expect(@node_info.hostname).to eq(@node_info_hostname)
     expect(@node_info.port.class).to be(Fixnum)
     expect(@node_info.port).to eq(@node_info_port)
     expect(@node_info.status.class).to be(Fixnum)
@@ -42,7 +42,7 @@ describe PGPool::NodeInfo do
   end
 
   it 'can be converted to a hash' do
-    expect(@node_info.to_hash).to eq(id: @node_info_id, host: @node_info_host, port: @node_info_port, status: @node_info_status, weight: @node_info_weight)
+    expect(@node_info.to_hash).to eq(id: @node_info_id, hostname: @node_info_hostname, port: @node_info_port, status: @node_info_status, weight: @node_info_weight)
   end
 
   it 'only admits valid status' do

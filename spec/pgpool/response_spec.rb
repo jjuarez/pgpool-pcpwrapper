@@ -3,10 +3,6 @@ require 'pgpool/response'
 
 describe PGPool::Response do
   before do
-    @failed_command = ::Mixlib::ShellOut.new('/usr/bin/this_command_will_fail')
-
-    @failed_command.run_command rescue RuntimeError
-
     @id      = 0
     @backend = 'backend1'
     @port    = 5432
@@ -14,7 +10,10 @@ describe PGPool::Response do
     @weight  = 0.5
 
     @success_command = ::Mixlib::ShellOut.new("echo '#{@backend} #{@port} #{@status} #{@weight}'")
-    @success_command.run_command rescue RuntimeError
+    @success_command.run_command
+
+    @failed_command = ::Mixlib::ShellOut.new('/usr/bin/this_command_will_fail')
+    @failed_command.run_command rescue RuntimeError
   end
 
   it 'can be built from a Mixlib::ShellOut' do
