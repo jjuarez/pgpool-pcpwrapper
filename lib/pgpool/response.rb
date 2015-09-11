@@ -4,20 +4,37 @@ module PGPool
   #
   # = class: Response
   class Response
-    OK        = 0
-    UNKNOWN   = 1  # Unknown Error (should not occur)
-    EOF       = 2  # EOF Error
-    NOMEM     = 3  # Memory shortage
-    READ      = 4  # Error while reading from the server
-    WRITE     = 5  # Error while writing to the server
-    TIMEOUT   = 6  # Timeout
-    INVAL     = 7  # Argument(s) to the PCP command was invalid
-    CONN      = 8  # Server connection error
-    NOCONN    = 9  # No connection exists
-    SOCK      = 10 # Socket error
-    HOST      = 11 # Hostname resolution error
-    BACKEND   = 12 # PCP process error on the server
-    AUTH      = 13 # Authorization failure
+    OK      = 0
+    UNKNOWN = 1  # Unknown Error (should not occur)
+    EOF     = 2  # EOF Error
+    NOMEM   = 3  # Memory shortage
+    READ    = 4  # Error while reading from the server
+    WRITE   = 5  # Error while writing to the server
+    TIMEOUT = 6  # Timeout
+    INVAL   = 7  # Argument(s) to the PCP command was invalid
+    CONN    = 8  # Server connection error
+    NOCONN  = 9  # No connection exists
+    SOCK    = 10 # Socket error
+    HOST    = 11 # Hostname resolution error
+    BACKEND = 12 # PCP process error on the server
+    AUTH    = 13 # Authorization failure
+
+    ERROR_MESSAGES = {
+      OK      =>'No error',
+      UNKNOWN =>'Unknown Error',
+      EOF     =>'EOF Error',
+      NOMEM   =>'Memory shortage',
+      READ    =>'Error while reading from the server',
+      WRITE   =>'Error while writing to the server',
+      TIMEOUT =>'Timeout',
+      INVAL   =>'Argument(s) to the PCP command was invalid',
+      CONN    =>'Server connection error',
+      NOCONN  =>'No connection exists',
+      SOCK    =>'Socket error',
+      HOST    =>'Hostname resolution error',
+      BACKEND =>'PCP process error on the server',
+      AUTH    =>'Authorization failure'
+    }
 
     attr_reader :status, :node_info
 
@@ -34,6 +51,10 @@ module PGPool
 
     def error?
       status != OK
+    end
+
+    def error_message
+      ERROR_MESSAGES[@status]
     end
   end
 end
