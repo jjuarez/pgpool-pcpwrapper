@@ -43,6 +43,11 @@ describe PGPool::NodeInfo do
 
   it 'can be converted to a hash' do
     expect(@node_info.to_hash).to eq(id: @node_info_id, hostname: @node_info_hostname, port: @node_info_port, status: @node_info_status, weight: @node_info_weight)
+    expect(@node_info.to_hash).to include(:id => @node_info_id)
+    expect(@node_info.to_hash).to include(:hostname => @node_info_hostname)
+    expect(@node_info.to_hash).to include(:port => @node_info_port)
+    expect(@node_info.to_hash).to include(:status => @node_info_status)
+    expect(@node_info.to_hash).to include(:weight => @node_info_weight)
   end
 
   it 'only admits valid status' do
