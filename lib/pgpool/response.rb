@@ -20,20 +20,20 @@ module PGPool
     AUTH    = 13 # Authorization failure
 
     ERROR_MESSAGES = {
-      OK      =>'No error',
-      UNKNOWN =>'Unknown Error',
-      EOF     =>'EOF Error',
-      NOMEM   =>'Memory shortage',
-      READ    =>'Error while reading from the server',
-      WRITE   =>'Error while writing to the server',
-      TIMEOUT =>'Timeout',
-      INVAL   =>'Argument(s) to the PCP command was invalid',
-      CONN    =>'Server connection error',
-      NOCONN  =>'No connection exists',
-      SOCK    =>'Socket error',
-      HOST    =>'Hostname resolution error',
-      BACKEND =>'PCP process error on the server',
-      AUTH    =>'Authorization failure'
+      OK:      'No error',
+      UNKNOWN: 'Unknown Error',
+      EOF:     'EOF Error',
+      NOMEM:   'Memory shortage',
+      READ:    'Error while reading from the server',
+      WRITE:   'Error while writing to the server',
+      TIMEOUT: 'Timeout',
+      INVAL:   'Argument(s) to the PCP command was invalid',
+      CONN:    'Server connection error',
+      NOCONN:  'No connection exists',
+      SOCK:    'Socket error',
+      HOST:    'Hostname resolution error',
+      BACKEND: 'PCP process error on the server',
+      AUTH:    'Authorization failure'
     }
 
     attr_reader :status, :node_info
@@ -55,6 +55,18 @@ module PGPool
 
     def error_message
       ERROR_MESSAGES[@status]
+    end
+
+    def to_hash
+      { status: @status, node_info: @node_info }
+    end
+
+    def inspect
+      to_hash.inspect
+    end
+
+    def to_s
+      "#{inspect}"
     end
   end
 end
