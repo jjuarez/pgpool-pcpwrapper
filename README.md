@@ -1,7 +1,5 @@
 # PGPool::Wrapper
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/pgpool/pcpwrapper`. To experiment with that code, run `bin/console` for an interactive prompt.
-
 This is a little gem to help with the PGPool PCP administration interface
 
 ## Installation
@@ -22,7 +20,49 @@ Or install it yourself as:
 
 ## Usage
 
-So simple, instantiate a Pgpoll::Wrapper::CommandLauncher and send the appropiate commands through the PCP interface. There are only two commands implemented ad this moment, pcp_node_count and pcp_node_info
+So simple, instantiate a PGPoll::PCPWrapper and send the appropiate commands through the PCP interface. 
+
+### How many backend nodes handle this instance of PGPool?
+
+    $ 'require 'pgpool/pcpwrapper'
+    $ 
+    $ pcp = PGPool::PCPWrapper.new(
+    $   hostname: 'localhost',
+    $   port: 9898,
+    $   user: 'pgpool_user',
+    $   password: 'supersecret',
+    $   timeout: 5
+    $
+    $ puts pcp.number_of_nodes
+
+
+### How about the status of node 0
+
+    $ 'require 'pgpool/pcpwrapper'
+    $ 
+    $ pcp = PGPool::PCPWrapper.new(
+    $   hostname: 'localhost',
+    $   port: 9898,
+    $   user: 'pgpool_user',
+    $   password: 'supersecret',
+    $   timeout: 5
+    $
+    $ puts pcp.node_information(0)
+
+
+### Ey!, giveme the status of all backend nodes
+
+    $ 'require 'pgpool/pcpwrapper'
+    $ 
+    $ pcp = PGPool::PCPWrapper.new(
+    $   hostname: 'localhost',
+    $   port: 9898,
+    $   user: 'pgpool_user',
+    $   password: 'supersecret',
+    $   timeout: 5
+    $
+    $ puts pcp.nodes_information(0)
+
 
 ## Development
 
