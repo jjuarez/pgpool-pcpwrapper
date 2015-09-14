@@ -24,48 +24,48 @@ So simple, instantiate a PGPoll::PCPWrapper and send the appropiate commands thr
 
 ### How many backend nodes handle this instance of PGPool?
 
-    ```ruby
-    require 'pgpool/pcpwrapper'
+```ruby
+require 'pgpool/pcpwrapper'
     
-    pcp = PGPool::PCPWrapper.new(
-            hostname: 'localhost',
-            port:     9898,
-            user:     'pgpool_user',
-            password: 'supersecret',
-            timeout:  5
+pcp = PGPool::PCPWrapper.new(
+        hostname: 'localhost',
+        port:     9898,
+        user:     'pgpool_user',
+        password: 'supersecret',
+        timeout:  5
     
-    puts pcp.number_of_nodes
-    ```
+puts pcp.number_of_nodes
+```
 
 ### How about the status of node 0
 
-    ```ruby
-    require 'pgpool/pcpwrapper'
+```ruby
+require 'pgpool/pcpwrapper'
 
-    pcp = PGPool::PCPWrapper.new(
-            hostname: 'localhost',
-            port:     9898,
-            user:     'pgpool_user',
-            password: 'supersecret',
-            timeout:  5
+pcp = PGPool::PCPWrapper.new(
+        hostname: 'localhost',
+        port:     9898,
+        user:     'pgpool_user',
+        password: 'supersecret',
+        timeout:  5
 
-    puts pcp.node_information(0)
-    ```
+puts pcp.node_information(0)
+```
 
 ### Giveme the status of all backend nodes
 
-    ```ruby
-    require 'pgpool/pcpwrapper'
+```ruby
+require 'pgpool/pcpwrapper'
 
-    pcp = PGPool::PCPWrapper.new(
-            hostname: 'localhost',
-            port:     9898,
-            user:     'pgpool_user',
-            password: 'supersecret',
-            timeout:  5
+pcp = PGPool::PCPWrapper.new(
+        hostname: 'localhost',
+        port:     9898,
+        user:     'pgpool_user',
+        password: 'supersecret',
+        timeout:  5
 
-    puts pcp.nodes_information(0)
-    ```
+puts pcp.nodes_information(0)
+```
 
 ## Development
 
