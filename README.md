@@ -24,7 +24,7 @@ So simple, instantiate a PGPoll::PCPWrapper and send the appropiate commands thr
 
 ### How many backend nodes handle this instance of PGPool?
 
-    'require 'pgpool/pcpwrapper'
+    require 'pgpool/pcpwrapper'
     
     pcp = PGPool::PCPWrapper.new(
             hostname: 'localhost',
@@ -38,6 +38,8 @@ So simple, instantiate a PGPoll::PCPWrapper and send the appropiate commands thr
 
 ### How about the status of node 0
 
+    require 'pgpool/pcpwrapper'
+
     pcp = PGPool::PCPWrapper.new(
             hostname: 'localhost',
             port:     9898,
@@ -48,7 +50,9 @@ So simple, instantiate a PGPoll::PCPWrapper and send the appropiate commands thr
     puts pcp.node_information(0)
 
 
-### Ey!, giveme the status of all backend nodes
+### Giveme the status of all backend nodes
+
+    require 'pgpool/pcpwrapper'
 
     pcp = PGPool::PCPWrapper.new(
             hostname: 'localhost',
