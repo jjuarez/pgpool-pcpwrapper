@@ -1,7 +1,7 @@
 /.bundle/
 /.yardoc
 /.ruby-version
-/.rubocop.yml
+/.rubocop.yaml
 /**/.*.swp
 /Gemfile.lock
 /_yardoc/
